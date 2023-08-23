@@ -1,0 +1,53 @@
+[local]
+log_level = "debug"
+listen_addresses = ["127.0.0.1:15002"]
+
+bitcoind_rpc_url = "http://127.0.0.1:10002"
+bitcoind_rpc_user = "btcuser2"
+bitcoind_rpc_pass = "btcpass2"
+
+sidechaind_rpc_url = "http://127.0.0.1:12002"
+sidechaind_rpc_user = "lquser2"
+sidechaind_rpc_pass = "lqpass2"
+
+hsm_socket = false
+
+[node]
+name = "testfunc02"
+
+main_skip_height = 0
+n_main_outputs = 100
+
+communication_secret_key = "cW4JYXfXUV4azEFk2ccxTXG5juEGyvkaWoopCJHtNMvehN5MXLP3"
+precommit_threshold = 2
+signing_secret_key = "cSWaj8YXu1ANRwRhyonxUxpQMUky6f6femyLdDuXyKkmMZi7ufoT"
+
+
+[[consensus.peer]]
+name = "testfunc01"
+communication_public_key = "032116abdbbe11dd6e2c335df05411f6aab7749a40bbcb48d32b5f07c08ec8950f"
+signing_public_key = "0376b3d151ebaf15ef7ecbef8ee2fd312bc168f6efbcf7bf5995b648e34baf37c9"
+addresses = ["127.0.0.1:15001"]
+
+[[consensus.peer]]
+name = "testfunc02"
+communication_public_key = "037cc668be12e7bd4979fe19efeb8251748d356da08236a1ba3d09326359ccf066"
+signing_public_key = "029b58fbba707f99227e8737f88e1c55147e71df3448998a2de3f55c8a8bfbd898"
+
+[consensus]
+fallback_fee_rate = 20000
+validate_pegout_authorization_proof = true
+send_pak_to_hsm = true
+
+stage1_ms = 300000
+stage2_ms = 300000
+stage3_ms = 450000
+fallback_mainchain_confirmations = 100
+watchman_descriptor = "sh(wsh(or_d(thresh_m(2,testfunc02,testfunc01),and_v(v:older(4032),thresh_m(1,02aef2b8a39966d49183fdddaefdc75af6d81ea6d16f7aba745cc4855e88f83084,02141d452c3deeb937efff9f3378cd50bbde0543b77bbc6df6fc0e0addbf5578c5,03948d24a9622cb14b198aed0739783d7c03d74c32c05780a86b43429c65679def)))))"
+
+[[consensus.cpes]]
+start = 0
+wm_descriptor = "sh(wsh(or_d(thresh_m(2,testfunc02,testfunc01),and_v(v:older(4032),thresh_m(1,02aef2b8a39966d49183fdddaefdc75af6d81ea6d16f7aba745cc4855e88f83084,02141d452c3deeb937efff9f3378cd50bbde0543b77bbc6df6fc0e0addbf5578c5,03948d24a9622cb14b198aed0739783d7c03d74c32c05780a86b43429c65679def)))))"
+pak_list = [
+["02f8bed719f845d69046bda0ca6ae12fa353821610736d4c1988c1224eadafa1d0", "020fff1b2c30af53083f7cce9d9cce2765e1606eda5fde1ea6edd022a61652c3e7"],
+]

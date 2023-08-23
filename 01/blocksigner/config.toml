@@ -1,0 +1,44 @@
+[local]
+log_level = "debug"
+listen_addresses = ["127.0.0.1:14001"]
+
+bitcoind_rpc_url = "http://127.0.0.1:10001"
+bitcoind_rpc_user = "btcuser1"
+bitcoind_rpc_pass = "btcpass1"
+
+sidechaind_rpc_url = "http://127.0.0.1:12001"
+sidechaind_rpc_user = "lquser1"
+sidechaind_rpc_pass = "lqpass1"
+
+hsm_socket = false
+
+signal_dynafed_activation = false
+[node]
+name = "testfunc01"
+
+precommit_threshold = 2
+
+communication_secret_key = "cQxgyymZYNpMkPunWDETybrn6nXqZwemHk57xcdFvD6w9wLVpYy5"
+signing_secret_key = "cQkbxTYhM4bavRUVWQ2MmvnDKAiP1LwonG8tDSFm1bhEkZVP6hn7"
+
+[consensus]
+stage1_ms = 10000
+stage2_ms = 25000
+stage3_ms = 25000
+
+[[consensus.peer]]
+name = "testfunc01"
+communication_public_key = "02dcfe6494411fc6593962ca760e9b4527dd24775079b3ea9c2e77a0b87f75d425"
+signing_public_key = "0240e402bf6df483d1e861543b583a5a635d846f04c3cf048a0848e90b0e870012"
+
+[[consensus.peer]]
+name = "testfunc02"
+communication_public_key = "02014cff128d207a7b8c520265aa53e85468dafa5366da593cd2a76ea80ebe079c"
+signing_public_key = "020b7da2eeec143f98a33cd0768fb9431bd6ef666b6004620eeba7cbf8295780c2"
+addresses = ["127.0.0.1:14002"]
+
+[[consensus.cpe]]
+start = 0
+blocksigner_descriptor = "wsh(thresh_m(2,testfunc02,testfunc01))"
+watchman_descriptor = "sh(wsh(or_d(thresh_m(2,029b58fbba707f99227e8737f88e1c55147e71df3448998a2de3f55c8a8bfbd898,0376b3d151ebaf15ef7ecbef8ee2fd312bc168f6efbcf7bf5995b648e34baf37c9),and_v(v:older(4032),thresh_m(1,02aef2b8a39966d49183fdddaefdc75af6d81ea6d16f7aba745cc4855e88f83084,02141d452c3deeb937efff9f3378cd50bbde0543b77bbc6df6fc0e0addbf5578c5,03948d24a9622cb14b198aed0739783d7c03d74c32c05780a86b43429c65679def)))))"
+watchman_pak_list = [["02f8bed719f845d69046bda0ca6ae12fa353821610736d4c1988c1224eadafa1d0", "020fff1b2c30af53083f7cce9d9cce2765e1606eda5fde1ea6edd022a61652c3e7"]]
